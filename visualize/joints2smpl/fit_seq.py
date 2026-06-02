@@ -31,9 +31,9 @@ parser.add_argument('--joint_category', type=str, default="AMASS",
                     help='use correspondence')
 parser.add_argument('--fix_foot', type=str, default="False",
                     help='fix foot or not')
-parser.add_argument('--data_folder', type=str, default="./demo/demo_data/",
+parser.add_argument('--data_folder', type=str, default="demo/demo_data",
                     help='data in the folder')
-parser.add_argument('--save_folder', type=str, default="./demo/demo_results/",
+parser.add_argument('--save_folder', type=str, default="demo/demo_results/",
                     help='results save folder')
 parser.add_argument('--files', type=str, default="test_motion.npy",
                     help='files use')
@@ -71,7 +71,7 @@ smplify = SMPLify3D(smplxmodel=smplmodel,
     
 purename = os.path.splitext(opt.files)[0]
 # --- load data ---
-data = np.load(opt.data_folder + "/" + purename + ".npy")  # [nframes, njoints, 3]
+data = np.load(opt.data_folder + "/" + purename + ".npy",allow_pickle=True)  # [nframes, njoints, 3]
 
 dir_save = os.path.join(opt.save_folder, purename)
 if not os.path.isdir(dir_save):
